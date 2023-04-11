@@ -11,7 +11,7 @@ public class PowerSet<TypeOfSet> {
     TypeOfSet[] og_set;
 
     Set<Set<TypeOfSet>> power_set = new HashSet<>();
-    Set<TypeOfSet [] > power_set2 = new HashSet<>();
+    //Set<TypeOfSet [] > power_set2 = new HashSet<>();
 
     public PowerSet(TypeOfSet[] originalSet) {
         /*
@@ -30,15 +30,19 @@ public class PowerSet<TypeOfSet> {
 
          *///Attempt 1
         int size = 0;
+        int start = 0;
         while (size <= originalSet.length){
             //Go through every letter
-            TypeOfSet [] subset = (TypeOfSet[]) new Object[size];
-            for(int i = 0; i<subset.length; i++){
-                subset[i] = originalSet[i];
+            Set <TypeOfSet> subset = new HashSet<>();
+            for(int i = start; i<size; i++){
+                subset.add(originalSet[i]);
             }
-            power_set2.add(subset);
-            //if ()
-            size++;
+            power_set.add(subset);
+            start++;
+            if (start == originalSet.length-1){// when we get to the last element
+                start = 0;
+                size++;
+            }
         }
     }
 
@@ -46,7 +50,7 @@ public class PowerSet<TypeOfSet> {
      * @return the powerset of `originalSet`
      */
     public Set<Set<TypeOfSet>> permute() {
-        return null;
+        return power_set;
     }
 
     /**
